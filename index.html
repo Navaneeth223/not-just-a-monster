@@ -1,0 +1,121 @@
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Globe, Rocket, Paintbrush, Code2, LayoutDashboard } from "lucide-react";
+import { motion } from "framer-motion";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
+import { Suspense } from "react";
+
+function RotatingCube() {
+  return (
+    <mesh rotation={[45, 45, 0]}>
+      <boxGeometry args={[1.5, 1.5, 1.5]} />
+      <meshStandardMaterial color="orange" />
+    </mesh>
+  );
+}
+
+export default function NotJustAMonster() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-white font-sans">
+      <header className="text-center py-12 px-4">
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-5xl font-extrabold mb-4"
+        >
+          Not Just a Monster
+        </motion.h1>
+        <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+          A creative chronicle of design, development, and digital evolution.
+        </p>
+      </header>
+
+      <main className="px-6 max-w-6xl mx-auto space-y-16">
+        <section>
+          <h2 className="text-3xl font-bold mb-4">🧊 3D Experience</h2>
+          <div className="h-96 bg-black rounded-xl">
+            <Canvas camera={{ position: [0, 0, 5] }}>
+              <ambientLight intensity={0.5} />
+              <pointLight position={[10, 10, 10]} />
+              <Suspense fallback={null}>
+                <RotatingCube />
+                <OrbitControls />
+              </Suspense>
+            </Canvas>
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-3xl font-bold mb-4">📰 Featured Story: The Future of Web</h2>
+          <p className="text-gray-200">
+            The web is no longer flat. With emerging tools like <strong>Three.js</strong> and <strong>WebXR</strong>, interfaces are becoming spatial, immersive, and engaging. Learn how 3D UI is transforming how we experience the internet.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-3xl font-bold mb-4">🎨 UI/UX Design</h2>
+          <Card className="bg-gray-800 text-white">
+            <CardContent className="space-y-3 p-4">
+              <div className="flex items-center gap-2">
+                <Paintbrush /> <span className="font-semibold">Design Beyond the Pixels</span>
+              </div>
+              <p>
+                Empathy-led interfaces designed with tools like Figma and Spline. We emphasize accessibility, fluidity, and purpose-driven visuals.
+              </p>
+            </CardContent>
+          </Card>
+        </section>
+
+        <section>
+          <h2 className="text-3xl font-bold mb-4">💻 Front-End Development</h2>
+          <Card className="bg-gray-800 text-white">
+            <CardContent className="space-y-3 p-4">
+              <div className="flex items-center gap-2">
+                <LayoutDashboard /> <span className="font-semibold">Tech Stack</span>
+              </div>
+              <p>
+                HTML5, CSS3, JavaScript ES6+, React, Vue, Tailwind, and SASS. With immersive interactions powered by <strong>Three.js</strong> and <strong>GSAP</strong>.
+              </p>
+            </CardContent>
+          </Card>
+        </section>
+
+        <section>
+          <h2 className="text-3xl font-bold mb-4">⚙️ Back-End Development</h2>
+          <Card className="bg-gray-800 text-white">
+            <CardContent className="space-y-3 p-4">
+              <div className="flex items-center gap-2">
+                <Code2 /> <span className="font-semibold">Server-Side Power</span>
+              </div>
+              <p>
+                Node.js, Express, MongoDB, PostgreSQL, and Redis. Featuring scalable APIs, real-time WebSocket communication, and cloud-native deployment.
+              </p>
+            </CardContent>
+          </Card>
+        </section>
+
+        <section>
+          <h2 className="text-3xl font-bold mb-4">🚀 Tech Lab – The Next Web</h2>
+          <Card className="bg-gray-800 text-white">
+            <CardContent className="space-y-3 p-4">
+              <div className="flex items-center gap-2">
+                <Rocket /> <span className="font-semibold">Emerging Frontiers</span>
+              </div>
+              <p>
+                Explore the rise of <strong>WebAssembly</strong>, <strong>Edge Functions</strong>, <strong>AI integrations</strong> with LLMs, and immersive 3D with <strong>WebXR</strong>. The BAND era (Backend, AI, Next-Gen, DevOps) is here.
+              </p>
+            </CardContent>
+          </Card>
+        </section>
+
+        <footer className="text-center py-12 border-t border-gray-700 mt-10">
+          <p className="text-gray-400">“The web isn’t flat. It’s alive. Let’s build it that way.”</p>
+          <Button variant="outline" className="mt-4">Read More Articles</Button>
+        </footer>
+      </main>
+    </div>
+  );
+}
+      
